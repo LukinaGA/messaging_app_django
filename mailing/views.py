@@ -55,22 +55,27 @@ class MessageDeleteView(DeleteView):
     model = Message
     success_url = reverse_lazy("mailing:message_list")
 
-    class MailingListView(ListView):
-        model = Mailing
 
-    class MailingDetailsView(DetailView):
-        model = Mailing
+class MailingListView(ListView):
+    model = Mailing
 
-    class MailingCreateView(CreateView):
-        model = Mailing
-        form_class = MailingForm
-        success_url = reverse_lazy("mailing:mailing_list")
 
-    class MailingUpdateView(UpdateView):
-        model = Mailing
-        form_class = MailingForm
-        success_url = reverse_lazy("mailing:mailing_list")
+class MailingDetailsView(DetailView):
+    model = Mailing
 
-    class MailingDeleteView(DeleteView):
-        model = Mailing
-        success_url = reverse_lazy("mailing:mailing_list")
+
+class MailingCreateView(CreateView):
+    model = Mailing
+    form_class = MailingForm
+    success_url = reverse_lazy("mailing:mailing_list")
+
+
+class MailingUpdateView(UpdateView):
+    model = Mailing
+    form_class = MailingForm
+    success_url = reverse_lazy("mailing:mailing_list")
+
+
+class MailingDeleteView(DeleteView):
+    model = Mailing
+    success_url = reverse_lazy("mailing:mailing_list")
