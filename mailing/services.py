@@ -1,7 +1,7 @@
-from config.settings import CACHE_ENABLED
 from django.core.cache import cache
 
-from mailing.models import Recipient, Message, Mailing
+from config.settings import CACHE_ENABLED
+from mailing.models import Mailing, Message, Recipient
 
 
 def get_all_recipients():

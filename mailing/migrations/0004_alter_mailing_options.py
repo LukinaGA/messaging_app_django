@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('mailing', '0003_alter_mailing_first_sending'),
     ]
@@ -12,6 +11,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='mailing',
-            options={'ordering': ['status'], 'permissions': [('can_disabling_mailing', 'Can disabling mailing')], 'verbose_name': 'Рассылка', 'verbose_name_plural': 'Рассылки'},
+            options={'ordering': ['status'], 'permissions': [('can_disabling_mailing', 'Can disabling mailing')],
+                     'verbose_name': 'Рассылка', 'verbose_name_plural': 'Рассылки'},
         ),
     ]
