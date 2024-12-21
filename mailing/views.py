@@ -1,16 +1,16 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.http import HttpResponseForbidden
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DetailView, ListView, TemplateView
-from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from config.settings import EMAIL_HOST_USER
-from mailing.forms import RecipientForm, MessageForm, MailingForm
-from mailing.models import Recipient, Message, Mailing, AttemptSending
-from mailing.services import get_all_messages, get_all_recipients, get_all_mailing
+from mailing.forms import MailingForm, MessageForm, RecipientForm
+from mailing.models import AttemptSending, Mailing, Message, Recipient
+from mailing.services import get_all_mailing, get_all_messages, get_all_recipients
 from users.models import User
 
 
@@ -36,7 +36,8 @@ class MainPageView(LoginRequiredMixin, TemplateView):
 
         else:
             context["total_mailing"] = Mailing.objects.filter(owner=user).count()
-            context["active_mailing"] = Mailing.objects.filter(owner=user).filter(status__in=["created", "launched"]).count()
+            context["active_mailing"] = Mailing.objects.filter(owner=user).filter(
+                status__in=["created", "launched"]).count()
             context["unique_recipients"] = Recipient.objects.filter(owner=user).distinct().count()
 
         return context
